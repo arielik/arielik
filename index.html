@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariel Liguori - Principal Architect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .resume {
+            background: var(--bg);
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .resume-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-header .title {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .resume-header .contact {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .resume-header .contact a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .summary {
+            background: var(--bg-alt);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-item {
+            background: var(--bg-alt);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .tech-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child, .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .meta, .education-item .meta {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .cert-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">AL</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="https://github.com/arielik" target="_blank">GitHub</a></li>
+                <li><a href="https://underlays.blogspot.com" target="_blank">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Ariel Liguori</h1>
+            <div class="subtitle">Principal Architect • Researcher • Open Source Enthusiast</div>
+            <p>
+                I architect mission-critical infrastructure that powers global financial operations. 
+                From low-level performance optimization to enterprise-wide SDN implementations, 
+                I engineer elegant solutions from first principles.
+            </p>
+            <p>
+                <strong>OpenSource lover, automation evangelist, living in a container and orchestrating daily tasks as much as I can.</strong>
+            </p>
+            <div class="social-links">
+                <a href="mailto:arielik@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/liguoriariel" target="_blank">LinkedIn</a>
+                <a href="https://github.com/arielik" target="_blank">GitHub</a>
+                <a href="https://underlays.blogspot.com" target="_blank">Blog</a>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume">
+        <div class="container">
+            <div class="resume-header">
+                <h1>ARIEL LIGUORI</h1>
+                <div class="title">Principal Architect | Advisor | Consultant</div>
+                <div class="contact">
+                    <span>Jersey City, NJ</span>
+                    <a href="mailto:arielik@gmail.com">arielik@gmail.com</a>
+                    <a href="https://linkedin.com/in/liguoriariel" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/arielik" target="_blank">GitHub</a>
+                    <a href="https://underlays.blogspot.com" target="_blank">Blog</a>
+                </div>
+            </div>
+
+            <div class="summary">
+                <p>
+                    Principal Engineer and Technical Architect with 15+ years architecting mission-critical infrastructure for large-scale financial operations and service provider environments. Expert in designing scalable on-premises cloud solutions spanning virtualization, SDN, AI/ML, and HPC systems. Led distributed teams of high-performing engineers and data scientists, delivering enterprise-wide infrastructure that performs under pressure at global scale.
+                </p>
+                <p style="margin-top: 1rem;">
+                    Deep technical expertise across the full stack—from low-level infrastructure optimization (PCIe bus exhaustion, GPU rails, API scaling patterns) to modern datacenter design. Patent holder in SDN architecture and network design. Active contributor to CNCF and Kubernetes upstream projects.
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Core Competencies:</strong> SDN/NFV Architecture • Cloud Infrastructure Design • Performance Engineering • AI/ML Infrastructure • Network Automation • Team Leadership • Patent Development
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <strong>Virtualization</strong>
+                        VMware (VCF, NSX-T, ESXi), Nutanix, KVM, Kubevirt, OpenStack, Openshift, Libvirt
+                    </div>
+                    <div class="tech-item">
+                        <strong>Cloud</strong>
+                        AWS (EKS, Lambda, EC2, SageMaker, VPC), GCP (GCE/GKE), Azure (AKS, VNet)
+                    </div>
+                    <div class="tech-item">
+                        <strong>Networking</strong>
+                        SRv6, VxLAN, EVPN, InfiniBand, BGP, MPLS, IPv6, Cisco ACI/Nexus
+                    </div>
+                    <div class="tech-item">
+                        <strong>Container Orchestration</strong>
+                        Kubernetes, Docker, OVS, CNI (Cilium, OVN-K, Calico, Flannel)
+                    </div>
+                    <div class="tech-item">
+                        <strong>Programming</strong>
+                        Python, Go, C/C++, Rust, Ruby, ASM x86
+                    </div>
+                    <div class="tech-item">
+                        <strong>AI/ML Infrastructure</strong>
+                        GPU clusters, HPC interconnects (InfiniBand/RoCE), distributed training fabrics, multi-node scaling, storage optimization for ML workloads
+                    </div>
+                    <div class="tech-item">
+                        <strong>Automation</strong>
+                        ONAP, ETSI ZSM, NFV MANO, IaaC (Terraform, Ansible, not just use but development)
+                    </div>
+                </div>
+                <div class="certifications">
+                    <span class="cert-badge">2x VCIX</span>
+                    <span class="cert-badge">2x CCIE</span>
+                    <span class="cert-badge">CCDE</span>
+                    <span class="cert-badge">AWS Solutions Architect</span>
+                    <span class="cert-badge">AWS ML Specialist</span>
+                    <span class="cert-badge">CEH</span>
+                    <span class="cert-badge">3x JNCP</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <h3>JPMorgan Chase & Co.</h3>
+                    <div class="meta">Executive Director - Principal Engineer | January 2023 - Present | United States</div>
+                    <ul>
+                        <li>Designed and led enterprise-wide Software-Defined Networking (SDN) infrastructure implementation for on-premises cloud supporting global operations</li>
+                        <li>Established performance engineering practice across compute, network, and storage ecosystems, ensuring infrastructure reliability at scale</li>
+                        <li>Obtained multiple patents in SDN architecture, resource optimization algorithms, and datacenter network design</li>
+                        <li>Led cross-functional teams delivering comprehensive virtualized infrastructure platform integrating SDN, compute, and storage</li>
+                        <li>Drive continuous risk posture analysis and mitigation strategies for infrastructure security and operational resilience</li>
+                    </ul>
+                    <div class="meta" style="margin-top: 1rem;">VP - Software Defined Networking (SDN) | September 2019 - June 2023 | Buenos Aires, Argentina</div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>FiberCorp</h3>
+                    <div class="meta">Net DevOps Architect @R&D - Team Leader | November 2011 - September 2019 | Buenos Aires, Argentina</div>
+                    <ul>
+                        <li>Designed microservices distributed architecture using Kubernetes and Docker for NFV/SDN implementation</li>
+                        <li>Led E2E automation project for backbone and B2B services, delivering fully automated service provisioning</li>
+                        <li>Developed service framework based on ONAP/ETSI ZSM integrating NFV MANO ecosystem with Ruby/Python + ReactJS</li>
+                        <li>Provided expert consulting on complex service provider scenarios, backbone design, and datacenter scalability</li>
+                        <li>SME for Cisco ACI/Nexus, VMware vCD/vRA/NSX, and OpenStack platforms</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>University of Buenos Aires (UBA)</h3>
+                    <div class="meta">Research Staff Member | July 2014 - Present | Laboratory of Advanced Systems (LSIA)</div>
+                    <p>Conduct research in Affective Computing and advanced systems. Bridge academic rigor with real-world infrastructure implementation.</p>
+                    <div class="meta" style="margin-top: 1rem;">Teaching Assistant - Algorithms & Programming II | June 2010 - July 2022</div>
+                    <p>Taught ANSI C, C++, OOP, memory allocation, hardware structure, and data structures.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>ie-bootcamps</h3>
+                    <div class="meta">Founder | January 2017 - Present | Buenos Aires, Argentina</div>
+                    <p>Provide consulting, training, and content development for datacenter, automation, containers, and DevOps programs. CCIE/VCIX/VCDX trainer specializing in advanced infrastructure topics.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Previous Experience</h3>
+                    <p><strong>Independent</strong> - Senior Technical Consultant (2010 - Present)</p>
+                    <p><strong>Accenture</strong> - Sr. IT Network Engineer (2009 - 2010)</p>
+                    <p><strong>Siemens IT Solutions</strong> - Sr. Network Engineer (2010 - 2011)</p>
+                    <p><strong>Siemens Itron</strong> - Sr. IT Security Analyst (2007 - 2009)</p>
+                    <p><strong>Interoptics</strong> - SSr. Network Analyst (2006 - 2007)</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <h3>PhD in Artificial Intelligence & Machine Learning (In Progress)</h3>
+                    <div class="meta">University of Texas at Austin</div>
+                </div>
+
+                <div class="education-item">
+                    <h3>Master of Technology (M.Tech.) - Services & Network Specialization</h3>
+                    <div class="meta">Universidad de Buenos Aires | 2015 - 2017</div>
+                </div>
+
+                <div class="education-item">
+                    <h3>Postgraduate Certificate - Big Data & Artificial Intelligence</h3>
+                    <div class="meta">Universidad Centro de Altos Estudios en Ciencias Exactas | 2014</div>
+                </div>
+
+                <div class="education-item">
+                    <h3>Bachelor of Science - Computer Science</h3>
+                    <div class="meta">Universidad de Buenos Aires | 2008 - 2014</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Patents & Publications</h2>
+                <p><strong>Patent:</strong> System and method for declarative automation for deployment of software-defined network (SDN)</p>
+                <p style="margin-top: 1rem;"><strong>Technical Publications:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Pointers & Data Types on C - FIUBA</li>
+                    <li>Compilers - Algorithms & Programming II - FIUBA</li>
+                    <li>Process & Threads - Algorithms & Programming II - FIUBA</li>
+                    <li>ClassBook - Algorithms & Programming II - FIUBA</li>
+                    <li>Data Types & Memory Handling in C - FIUBA</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ariel Liguori. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Entrepreneur soul. Network engineer heart. Architect mindset. Developer eyes.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
